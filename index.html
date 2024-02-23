@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Export/Import RPG Save</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <script src="js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body data-bs-theme="dark">
+  <div class="row">
+    <div class="col-sm-6 mb-3">
+      <div class="card text-center">
+        <button class="btn btn-primary-border-subtle card-body" onclick="exportLocalStorage()">Export Save</button>
+      </div>
+    </div>
+    <div class="col-sm-6 mb-3">
+      <div class="card text-center">
+        <button class="btn btn-primary-border-subtle card-body"
+          onclick="document.getElementById('importInput').click()">Import Save</button>
+        <input type="file" id="importInput" style="display: none" />
+        <script src="js/index.js"></script>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
