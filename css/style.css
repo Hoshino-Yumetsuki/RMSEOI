@@ -1,12 +1,9 @@
 .row {
   width: 400px;
   height: 300px;
-  /* 把元素变成定位元素 */
   position: absolute;
-  /* 元素距离上，左都为50% */
   left: 50%;
   top: 60%;
-  /* 让元素的左外边距，上外边距为元素宽高的1/2 注意margin是负距*/
   margin-top: -150px;
   margin-left: -200px;
 }
