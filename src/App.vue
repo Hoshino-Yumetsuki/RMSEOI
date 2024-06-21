@@ -4,19 +4,16 @@
       <div class="col-sm-12 mb-3">
         <b-card class="text-center">
           <b-dropdown id="dropdown-export" text="选择存档导出" variant="primary" class="m-md-2">
-            <b-dropdown-item
-              v-for="(value, key) in filteredLocalStorage"
-              :key="key"
-              @click="selectSave(key)"
-            >
-              {{ key }}
-            </b-dropdown-item>
+            <template v-if="Object.keys(filteredLocalStorage).length">
+              <b-dropdown-item v-for="(value, key) in filteredLocalStorage" :key="key" @click="selectSave(key)">
+                {{ key }}
+              </b-dropdown-item>
+            </template>
+            <template v-else>
+              <b-dropdown-item disabled>没有可以导出的存档</b-dropdown-item>
+            </template>
           </b-dropdown>
-          <b-button
-            variant="primary"
-            :disabled="!selectedSaveKey"
-            @click="exportSelectedSave"
-          >
+          <b-button variant="primary" :disabled="!selectedSaveKey" @click="exportSelectedSave">
             导出选中的存档
           </b-button>
         </b-card>
@@ -33,6 +30,7 @@
 
 <script>
 import { BDropdown, BDropdownItem, BCard, BButton } from 'bootstrap-vue-next';
+import { selectSave, exportSelectedSave, importLocalStorage, triggerImport, loadLocalStorageItems } from './main';
 
 export default {
   name: 'App',
@@ -60,70 +58,11 @@ export default {
     }
   },
   methods: {
-    selectSave(key) {
-      this.selectedSaveKey = key;
-    },
-    exportSelectedSave() {
-      if (!this.selectedSaveKey) {
-        alert('请选择要导出的存档。');
-        return;
-      }
-
-      const key = this.selectedSaveKey;
-      const value = this.localStorageItems[key];
-      let filename = '';
-
-      if (key.startsWith('RPG File')) {
-        const fileNumber = key.replace('RPG File', '').trim();
-        filename = `file${fileNumber}.rpgsave`;
-      } else {
-        alert('不支持的存档格式。');
-        return;
-      }
-
-      const blob = new Blob([value], { type: 'text/plain' });
-      const downloadLink = document.createElement('a');
-      downloadLink.href = URL.createObjectURL(blob);
-      downloadLink.download = filename;
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
-    },
-    importLocalStorage(event) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const filename = file.name;
-          let key = '';
-
-          if (filename.startsWith('file') && filename.endsWith('.rpgsave')) {
-            const fileNumber = filename.replace('file', '').replace('.rpgsave', '').trim();
-            key = `RPG File ${fileNumber}`;
-          } else {
-            alert('不支持的文件格式。');
-            return;
-          }
-
-          const encodedValue = e.target.result;
-          localStorage.setItem(key, encodedValue);
-          this.loadLocalStorageItems();
-          alert('存档导入成功。');
-        };
-        reader.readAsText(file);
-      }
-    },
-    triggerImport() {
-      this.$refs.importInput.click();
-    },
-    loadLocalStorageItems() {
-      const keys = Object.keys(localStorage);
-      const items = {};
-      keys.forEach((key) => {
-        items[key] = localStorage.getItem(key);
-      });
-      this.localStorageItems = items;
-    }
+    selectSave,
+    exportSelectedSave,
+    importLocalStorage,
+    triggerImport,
+    loadLocalStorageItems
   },
   mounted() {
     this.loadLocalStorageItems();
