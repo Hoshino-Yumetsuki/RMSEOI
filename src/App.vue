@@ -3,7 +3,7 @@
     <header class="app-header">
       <h1 class="text-center mb-4">RMSEOI</h1>
     </header>
-    
+
     <main class="container">
       <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
@@ -13,15 +13,9 @@
             </b-card-header>
             <b-card-body class="d-flex flex-column align-items-center px-4 pb-4">
               <b-dropdown id="dropdown-export" block variant="primary" class="mb-3 w-100" :disabled="!Object.keys(filteredLocalStorage).length">
-                <template #button-content>
-                  <i class="bi bi-archive"></i> {{ selectedSaveKey || '选择存档导出' }}
-                </template>
+                <template #button-content> <i class="bi bi-archive"></i> {{ selectedSaveKey || "选择存档导出" }} </template>
                 <template v-if="Object.keys(filteredLocalStorage).length">
-                  <b-dropdown-item
-                    v-for="(value, key) in filteredLocalStorage"
-                    :key="key"
-                    @click="selectSave(key)"
-                  >
+                  <b-dropdown-item v-for="(value, key) in filteredLocalStorage" :key="key" @click="selectSave(key)">
                     {{ key }}
                   </b-dropdown-item>
                 </template>
@@ -29,15 +23,7 @@
                   <b-dropdown-item disabled>没有可以导出的存档</b-dropdown-item>
                 </template>
               </b-dropdown>
-              <b-button
-                block
-                variant="outline-primary"
-                :disabled="!selectedSaveKey"
-                @click="exportSelectedSave"
-                class="w-100 btn-with-icon"
-              >
-                <i class="bi bi-download"></i> 导出选中的存档
-              </b-button>
+              <b-button block variant="outline-primary" :disabled="!selectedSaveKey" @click="exportSelectedSave" class="w-100 btn-with-icon"> <i class="bi bi-download"></i> 导出选中的存档 </b-button>
             </b-card-body>
           </b-card>
 
@@ -46,14 +32,7 @@
               <h4 class="text-center">存档导入</h4>
             </b-card-header>
             <b-card-body class="d-flex flex-column align-items-center px-4 pb-4">
-              <b-button 
-                block 
-                variant="success" 
-                @click="triggerImport" 
-                class="w-100 btn-with-icon"
-              >
-                <i class="bi bi-upload"></i> 导入存档
-              </b-button>
+              <b-button block variant="success" @click="triggerImport" class="w-100 btn-with-icon"> <i class="bi bi-upload"></i> 导入存档 </b-button>
               <input type="file" ref="importInput" @change="importLocalStorage" style="display: none" />
             </b-card-body>
           </b-card>
@@ -71,59 +50,59 @@
 </template>
 
 <script>
-import { BDropdown, BDropdownItem, BCard, BCardHeader, BCardBody, BButton } from 'bootstrap-vue-next';
-import { selectSave, exportSelectedSave, importLocalStorage, triggerImport, loadLocalStorageItems } from './sm';
+import { BDropdown, BDropdownItem, BCard, BCardHeader, BCardBody, BButton } from "bootstrap-vue-next";
+import { selectSave, exportSelectedSave, importLocalStorage, triggerImport, loadLocalStorageItems } from "./sm";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     BDropdown,
     BDropdownItem,
     BCard,
     BCardHeader,
     BCardBody,
-    BButton
+    BButton,
   },
   data() {
     return {
       selectedSaveKey: null,
-      localStorageItems: {}
+      localStorageItems: {},
     };
   },
   computed: {
     filteredLocalStorage() {
       const filtered = {};
       for (const [key, value] of Object.entries(this.localStorageItems)) {
-        if (key.startsWith('RPG File') || key === 'RPG Global') {
+        if (key.startsWith("RPG File") || key === "RPG Global") {
           filtered[key] = value;
         }
       }
       return filtered;
-    }
+    },
   },
   methods: {
     selectSave,
     exportSelectedSave,
     importLocalStorage,
     triggerImport,
-    loadLocalStorageItems
+    loadLocalStorageItems,
   },
   async mounted() {
     this.loadLocalStorageItems();
-    const getSystemTheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    const getSystemTheme = () => (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
     const setTheme = (theme) => {
-      document.documentElement.setAttribute('data-bs-theme', theme);
+      document.documentElement.setAttribute("data-bs-theme", theme);
     };
     setTheme(getSystemTheme());
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
       setTheme(getSystemTheme());
     });
-  }
+  },
 };
 </script>
 
 <style>
-@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
 
 :root {
   --card-transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -136,7 +115,7 @@ export default {
 
 /* Base styles */
 body {
-  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
   overflow-x: hidden;
   line-height: 1.6;
@@ -262,7 +241,7 @@ body {
   .app-header h1 {
     font-size: 2rem;
   }
-  
+
   .card-body {
     padding: 1.25rem;
   }
