@@ -125,6 +125,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fontsource/noto-sans-sc@npm:^5.2.5":
+  version: 5.2.5
+  resolution: "@fontsource/noto-sans-sc@npm:5.2.5"
+  checksum: 10c0/8dbfc133e277ec5f3a4e8c9e67b82f0ec682cb0eae2500698bdbfe7110c61c0ebae27934bd068a534df67101d7319eb4d637842ade638f970526253a4560fce6
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.11.14":
   version: 0.11.14
   resolution: "@humanwhocodes/config-array@npm:0.11.14"
@@ -489,6 +496,13 @@ __metadata:
   version: 1.0.0
   resolution: "boolbase@npm:1.0.0"
   checksum: 10c0/e4b53deb4f2b85c52be0e21a273f2045c7b6a6ea002b0e139c744cb6f95e9ec044439a52883b0d74dedd1ff3da55ed140cfdddfed7fb0cccbed373de5dce1bcf
+  languageName: node
+  linkType: hard
+
+"bootstrap-icons@npm:^1.11.3":
+  version: 1.11.3
+  resolution: "bootstrap-icons@npm:1.11.3"
+  checksum: 10c0/37eefd418c6bbbb304bdff0f2ed527f82c3c6f331d3e3a7c4aa8bbdbaf7118bb86725b024f85e7d738c613d48c7353cd81c09e58e9d8d34c5633960fdec8410b
   languageName: node
   linkType: hard
 
@@ -2011,9 +2025,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "rmseoi@workspace:."
   dependencies:
+    "@fontsource/noto-sans-sc": "npm:^5.2.5"
     "@popperjs/core": "npm:^2.11.8"
     "@vitejs/plugin-vue": "npm:^1.6.1"
     bootstrap: "npm:^5.3.3"
+    bootstrap-icons: "npm:^1.11.3"
     bootstrap-vue-next: "npm:^0.22.1"
     eslint: "npm:8"
     eslint-plugin-vue: "npm:8"

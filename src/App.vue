@@ -117,8 +117,11 @@ export default {
 </script>
 
 <style>
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap");
+@import "bootstrap-icons/font/bootstrap-icons.css";
+@import "@fontsource/noto-sans-sc/300.css";
+@import "@fontsource/noto-sans-sc/400.css";
+@import "@fontsource/noto-sans-sc/500.css";
+@import "@fontsource/noto-sans-sc/700.css";
 
 :root {
   /* Color Variables */

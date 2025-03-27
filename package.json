@@ -9,8 +9,10 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src"
   },
   "dependencies": {
+    "@fontsource/noto-sans-sc": "^5.2.5",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
     "bootstrap-vue-next": "^0.22.1",
     "vue": "^3.2.13"
   },
